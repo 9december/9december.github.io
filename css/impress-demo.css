@@ -32,7 +32,7 @@ html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
 del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
+small, strike, strong,sup, tt, var,
 b, u, i, center,
 dl, dt, dd, ol, ul, li,
 fieldset, form, label, legend,
@@ -84,14 +84,17 @@ table {
 body {
     font-family: 'Fredoka One', cursive;
     min-height: 740px;
-
-    background: rgb(215, 215, 215);
+    background: url('../images/background.jpg');
+    color:white;
+/*
+    background: rgb(215, 215l, 215);
     background: -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 500, from(rgb(240, 240, 240)), to(rgb(190, 190, 190)));
     background: -webkit-radial-gradient(rgb(240, 240, 240), rgb(190, 190, 190));
     background:    -moz-radial-gradient(rgb(240, 240, 240), rgb(190, 190, 190));
     background:     -ms-radial-gradient(rgb(240, 240, 240), rgb(190, 190, 190));
     background:      -o-radial-gradient(rgb(240, 240, 240), rgb(190, 190, 190));
     background:         radial-gradient(rgb(240, 240, 240), rgb(190, 190, 190));
+*/
 }
 
 /*
@@ -206,6 +209,7 @@ a:focus {
 
     They cover everything what you see on first three steps of the demo.
 */
+#player{ visibility: hidden; }
 .slide {
     display: block;
 
@@ -213,25 +217,31 @@ a:focus {
     height: 700px;
     padding: 40px 60px;
 
-    background-color: white;
+    /* background-color: white;
     border: 1px solid rgba(0, 0, 0, .3);
     border-radius: 10px;
     box-shadow: 0 2px 6px rgba(0, 0, 0, .1);
-
+ 
     color: rgb(102, 102, 102);
-    text-shadow: 0 2px 2px rgba(0, 0, 0, .1);
+    text-shadow: 0 2px 2px rgba(0, 0, 0, .1); */
 
-    font-family: 'Poiret One', cursive;
+    font-family: 'Open Sans Condensed', sans-serif;
     font-size: 30px;
     line-height: 36px;
     letter-spacing: -1px;
+    text-align: center; 
 }
-
+.slide sub{  font-family: monospace; font-size: 18px; }
+.slide small{ font-size: 20px; display: block; 
+    font-family: 'Lato', sans-serif; line-height: 1em;
+}
+ps{ font-family: monospace; font-size: 14px; text-shadow: 0px 0px 2px #111; 
+    padding:2px; line-height:0;
+    background:rgba(0,0,0,0.7); }
 .slide q {
     display: block;
     font-size: 50px;
-    line-height: 72px;
-
+    line-height:1.4em;
     margin-top: 100px;
 }
 
@@ -239,6 +249,10 @@ a:focus {
     white-space: nowrap;
 }
 
+.normal{
+    font-family: 'Open Sans Condensed', sans-serif;
+    font-size: 36px;
+}
 /*
     And now we start to style each step separately.
 
@@ -290,19 +304,21 @@ a:focus {
 #big {
     width: 600px;
     text-align: center;
-    font-size: 60px;
+    font-size:45px;
+    font-family: 'Open Sans Condensed', sans-serif;
     line-height: 1;
 }
 
 #big b {
+    font-family: 'Fredoka One', cursive;
     display: block;
     font-size: 250px;
-    line-height: 250px;
 }
 
 #big .thoughts {
-    font-size: 90px;
-    line-height: 150px;
+    font-family: 'Open Sans Condensed', sans-serif;
+    font-size:60px;
+    line-height: 1.5em;
 }
 
 /*
@@ -386,7 +402,7 @@ a:focus {
 }
 
 #imagination .imagination {
-    font-size: 78px;
+    font-size: 64px;
 }
 
 /*
@@ -570,59 +586,14 @@ a:focus {
     I know, it sounds complicated ... maybe it would be easier with the code?
 */
 
-.hint {
-    /*
-        We hide the hint until presentation is started and from browsers not supporting
-        impress.js, as they will have a linear scrollable view ...
-    */
-    display: none;
-
-    /*
-        ... and give it some fixed position and nice styles.
-    */
-    position: fixed;
-    left: 0;
-    right: 0;
-    bottom: 200px;
-
-    background: rgba(0,0,0,0.5);
-    color: #EEE;
+.hint span{
+    background: rgba(0,0,0,1);
+    color: #fff;
     text-align: center;
-
-    font-size: 50px;
-    padding: 20px;
-
-    z-index: 100;
-
-    /*
-        By default we don't want the hint to be visible, so we make it transparent ...
-    */
-    opacity: 0;
-
-    /*
-        ... and position it below the bottom of the screen (relative to it's fixed position)
-    */
-    -webkit-transform: translateY(400px);
-    -moz-transform:    translateY(400px);
-    -ms-transform:     translateY(400px);
-    -o-transform:      translateY(400px);
-    transform:         translateY(400px);
-
-    /*
-        Now let's imagine that the hint is visible and we want to fade it out and move out
-        of the screen.
-
-        So we define the transition on the opacity property with 1s duration and another
-        transition on transform property delayed by 1s so it will happen after the fade out
-        on opacity finished.
-
-        This way user will not see the hint moving down.
-    */
-    -webkit-transition: opacity 1s, -webkit-transform 0.5s 1s;
-    -moz-transition:    opacity 1s,    -moz-transform 0.5s 1s;
-    -ms-transition:     opacity 1s,     -ms-transform 0.5s 1s;
-    -o-transition:      opacity 1s,      -o-transform 0.5s 1s;
-    transition:         opacity 1s,         transform 0.5s 1s;
+    font-size:18px;
+    text-transform: uppercase;
+    letter-spacing: 1px; 
+    padding:5px;
 }
 
 /*
@@ -701,3 +672,11 @@ a:focus {
     Thanks for reading. I hope you enjoyed it at least as much as I enjoyed writing it
     for you.
 */
+.white-border{ border:5px solid #eee; display: block; margin: auto; clear:both; }
+.photo-opace{ 
+    opacity: 0.8;
+    margin:auto;
+    display: block;
+    padding:20px;
+}
+
